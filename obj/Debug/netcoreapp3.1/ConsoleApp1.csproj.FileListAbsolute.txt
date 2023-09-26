@@ -12,3 +12,10 @@ C:\Users\Марк\source\repos\BBI-23-1\bin\Debug\netcoreapp3.1\ConsoleApp1.pdb
 C:\Users\Марк\source\repos\BBI-23-1\obj\Debug\netcoreapp3.1\ConsoleApp1.dll
 C:\Users\Марк\source\repos\BBI-23-1\obj\Debug\netcoreapp3.1\ConsoleApp1.pdb
 C:\Users\Марк\source\repos\BBI-23-1\obj\Debug\netcoreapp3.1\ConsoleApp1.genruntimeconfig.cache
+C:\Users\m2302741\Source\Repos\BBI-23-6\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\m2302741\Source\Repos\BBI-23-6\obj\Debug\netcoreapp3.1\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\m2302741\Source\Repos\BBI-23-6\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\m2302741\Source\Repos\BBI-23-6\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfo.cs
+C:\Users\m2302741\Source\Repos\BBI-23-6\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\m2302741\Source\Repos\BBI-23-6\obj\Debug\netcoreapp3.1\ConsoleApp1.dll
+C:\Users\m2302741\Source\Repos\BBI-23-6\obj\Debug\netcoreapp3.1\ConsoleApp1.pdb
