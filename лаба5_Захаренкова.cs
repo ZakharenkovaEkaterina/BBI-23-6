@@ -331,18 +331,22 @@
 //    static int[] L(int[,] k) 
 //    {
 //        int[] f = new int[k.GetLength(1)];
-//        int max = -1000000000;
+//        int max = 0;
 //        for (int j = 0;j < k.GetLength(1); j++)
 //        {
 //            for (int i = 0; i < k.GetLength(0); i++)
 //            {
+//                if (k[i,j] < 0 && max == 0)
+//                {
+//                    max = k[i,j];
+//                }
 //                if (k[i,j] < 0 && k[i,j]>max)
 //                {
 //                    max = k[i,j];
 //                }               
 //            }
 //            f[j] = max;
-//            max = -1000000000;
+//            max = 0;
 //        }
 //        return f;
 //    }
