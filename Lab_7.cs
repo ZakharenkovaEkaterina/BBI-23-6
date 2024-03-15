@@ -236,6 +236,10 @@ class Program
     {
         protected string _namesport;
         protected Skater[] skater;
+        piblic winter_sports(Skater[] skaters)
+        {
+                skater = skaters;
+        }
         public void Namesport()
         {
             Console.WriteLine(_namesport);
@@ -248,19 +252,17 @@ class Program
             }
         }
     }
-    class FigureSkating : winter_sports
+    class FigureSkating : winter_sports 
     {
-        public FigureSkating(Skater[] skaters)
+        public FigureSkating(Skater[] skaters) : base(skaters)
         {
-            skater = skaters;
             _namesport = "Фигурное катание";
         }
     }
-    class SpeedSkating : winter_sports
+    class SpeedSkating : winter_sports 
     {
-        public SpeedSkating(Skater[] _skaters)
+        public SpeedSkating(Skater[] skaters) : base(skaters)
         {
-            skater = _skaters;
             _namesport = "Конькобежный спорт";
         }
     }
