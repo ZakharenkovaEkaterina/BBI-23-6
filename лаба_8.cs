@@ -1,12 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Threading.Tasks;
 abstract class Task
 {
-    public Task(string text) 
+    protected string print = "";
+    public Task(string text)
     {
-        
+    }
+    public override string ToString()
+    {
+        return print;
+
     }
     protected abstract void ParseText(string text); // все разные
     protected virtual int Count() // если несколько одинаковых, а один выбивается
@@ -15,19 +20,14 @@ abstract class Task
     }
     protected double CountPersent(double number, double total) // все одинаковые
     {
-        return Math.Round(number / total * 100,2) ;
+        return Math.Round(number / total * 100, 2);
     }
 }
-class Task_1: Task
+class Task_1 : Task
 {
-    private string print1 = "";
-    public Task_1(string text) : base(text) 
-    { 
-        ParseText(text);
-    }
-    public override string ToString()
+    public Task_1(string text) : base(text)
     {
-        return print1;
+        ParseText(text);
     }
     protected override void ParseText(string text)
     {
@@ -48,24 +48,19 @@ class Task_1: Task
         }
         for (char i = 'а'; i <= 'я'; i++)
         {
-            Russian[i] = CountPersent(Russian[i], sum);           
+            Russian[i] = CountPersent(Russian[i], sum);
         }
         foreach (var i in Russian)
         {
-            print1 += i.Key + " " + i.Value + "\n";
-        }       
-    }  
+            print += i.Key + " " + i.Value + "\n";
+        }
+    }
 }
 class Task_3 : Task
 {
-    private string print3 = "";
-    public Task_3(string text) : base(text) 
+    public Task_3(string text) : base(text)
     {
         ParseText(text);
-    }
-    public override string ToString()
-    {
-        return print3;
     }
     protected override void ParseText(string text)
     {
@@ -75,7 +70,7 @@ class Task_3 : Task
         int length_line = 0;
         foreach (string word in Words)
         {
-            if (length_line + word.Length > 50) 
+            if (length_line + word.Length > 50)
             {
                 list.Add(this_line); //добавляем текущую строку в список
                 this_line = "";
@@ -88,26 +83,21 @@ class Task_3 : Task
         for (int i = 0; i < list.Count; i++)
         {
             list[i] = list[i].Remove(list[i].Length - 1); //удаляем пробел в конце каждой строки
-            print3 += list[i] + "\n";
-        }        
-    }    
+            print += list[i] + "\n";
+        }
+    }
 }
 class Task_5 : Task
 {
-    private string print5 = "";
     public Task_5(string text) : base(text)
     {
         ParseText(text);
-    }
-    public override string ToString()
-    {
-        return print5;
     }
     protected override void ParseText(string text)
     {
         text = text.ToLower();
         Dictionary<char, double> Russian = new Dictionary<char, double>();
-        string[] words = text.Split(new char[] { ' ', ',', ';', '.','!','?', ':', '(', ')', '"' });       
+        string[] words = text.Split(new char[] { ' ', ',', ';', '.', '!', '?', ':', '(', ')', '"' });
         char first_letter;
         foreach (string word in words)
         {
@@ -125,7 +115,7 @@ class Task_5 : Task
         Sort(list);
         foreach (KeyValuePair<char, double> pair in list)
         {
-            print5 += pair.Key + " " + pair.Value + "\n";
+            print += pair.Key + " " + pair.Value + "\n";
         }
     }
     static void Sort(List<KeyValuePair<char, double>> list)
@@ -134,11 +124,11 @@ class Task_5 : Task
         {
             for (int j = 0; j < list.Count - 1; j++)
             {
-                if (list[j].Value < list[j+1].Value)
+                if (list[j].Value < list[j + 1].Value)
                 {
-                    KeyValuePair<char,double> t = list[j];
-                    list[j] = list[j+1];
-                    list[j+1] = t;
+                    KeyValuePair<char, double> t = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = t;
                 }
             }
         }
@@ -146,17 +136,12 @@ class Task_5 : Task
 }
 class Task_7 : Task
 {
-    private string print7 = "";
     private string request;
     public Task_7(string text) : base(text)
     {
         Console.WriteLine("Введите свой запрос:");
         request = Console.ReadLine();
         ParseText(text);
-    }
-    public override string ToString()
-    {
-        return print7;
     }
     protected override void ParseText(string text)
     {
@@ -165,25 +150,20 @@ class Task_7 : Task
         {
             if (word.Contains(request))
             {
-                print7 += word + "\n";
+                print += word + "\n";
             }
         }
-        if (print7 == "")
+        if (print == "")
         {
-            print7 = "Не найден результат по запросу";
+            print = "Не найден результат по запросу";
         }
     }
 }
 class Task_11 : Task
 {
-    private string print11 = "";
-    public Task_11(string text) : base(text) 
+    public Task_11(string text) : base(text)
     {
         ParseText(text);
-    }
-    public override string ToString()
-    {
-        return print11;
     }
     protected override void ParseText(string text)
     {
@@ -191,14 +171,14 @@ class Task_11 : Task
         Sort(Words);
         foreach (string i in Words)
         {
-            print11 += i + "\n";
+            print += i + "\n";
         }
     }
     static bool CheckOrder(string name1, string name2)
     {
         int length = Math.Min(name1.Length, name2.Length);
         int index = 0;
-        while (index < length && name1[index] == name2[index]) 
+        while (index < length && name1[index] == name2[index])
         {
             index++;
         }
@@ -245,15 +225,11 @@ class Task_11 : Task
 }
 class Task_14 : Task
 {
-    private string print14 = "";
     private int sum = 0;
-    public Task_14(string text) : base(text) 
+    public Task_14(string text) : base(text)
     {
         ParseText(text);
-    }
-    public override string ToString()
-    {
-        return sum + "";
+        print = sum + "";
     }
     protected override void ParseText(string text)
     {
@@ -261,7 +237,7 @@ class Task_14 : Task
         foreach (string word in Words)
         {
             string line = "";
-            for (int i=0; i < word.Length; i++)
+            for (int i = 0; i < word.Length; i++)
             {
                 if (char.IsDigit(word[i]))
                 {
