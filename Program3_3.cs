@@ -141,6 +141,14 @@ class Comand //3 уровень 3 задача
             }
         }
     }
+    [JsonConstructor]
+    public Comand(string name, double[] results, int count, int bestcomand)
+    {
+        this._name = name;
+        this._results = results;
+        this._count = count;
+        this._bestcomand = bestcomand;
+    }
     public string name { get { return _name; } }
     public double[] results { get { return _results; } }
     public int bestcomand { get { return _bestcomand; } }
