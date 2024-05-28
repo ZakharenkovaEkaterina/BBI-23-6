@@ -1,4 +1,4 @@
-﻿namespace ConsoleApplication1
+namespace ConsoleApplication1
 {
     using System;
     using System.Collections.Generic;
@@ -7,18 +7,22 @@
 
     public partial class FurnitureCatalog : IFurnitureCatalog
     {
-        protected List<FurnitureItem> Catalog = new List<FurnitureItem>();
-        public List<FurnitureItem> catalog { get { return Catalog; } }
+        public List<FurnitureItem> catalog { private set; get; }
+        public FurnitureCatalog()
+        {
+            catalog = new List<FurnitureItem>();
+        }
+        public FurnitureCatalog(FurnitureItem[] items) { catalog = new List<FurnitureItem>(items); }
 
         public void AddItem(FurnitureItem item)
         {
             item.SetPrice();
-            Catalog.Add(item);
+            catalog.Add(item);
         }
 
         public void RemoveItem(FurnitureItem item)
         {
-            Catalog.Remove(item);
+            catalog.Remove(item);
         }
 
         public void AddItem(FurnitureItem[] items)
@@ -26,7 +30,7 @@
             foreach (var item in items)
             {
                 item.SetPrice();
-                Catalog.Add(item);
+                catalog.Add(item);
             }
         }
 
@@ -34,13 +38,13 @@
         {
             foreach (var item in items)
             {
-                Catalog.Remove(item);
+                catalog.Remove(item);
             }
         }
 
         public void DisplayCatalog()
         {
-            foreach (var item in Catalog)
+            foreach (var item in catalog)
             {
                 Console.WriteLine(item);
             }
@@ -51,15 +55,15 @@
     {
         public void Sort()
         {
-            for (int i = 0; i < Catalog.Count; i++)
+            for (int i = 0; i < catalog.Count; i++)
             {
-                var item = Catalog[i];
+                var item = catalog[i];
                 for (int j = i - 1; j >= 0;)
                 {
-                    if (item.price > Catalog[j].price)
+                    if (item.price > catalog[j].price)
                     {
-                        Catalog[j + 1] = Catalog[j];
-                        Catalog[j] = item;
+                        catalog[j + 1] = catalog[j];
+                        catalog[j] = item;
                         j--;
                     }
                     else
@@ -76,30 +80,30 @@
         public void SaveCatalogToJson(string filename)
         {
             string fullPath = Path.Combine(path, filename);
-            jsonSerializer.SerializeToFile(this.Catalog, fullPath);
+            jsonSerializer.SerializeToFile(this.catalog, fullPath);
         }
 
         public void LoadCatalogFromJson(string filename)
         {
             string fullPath = Path.Combine(path, filename);
-            Catalog = jsonSerializer.DeserializeFromFile<List<FurnitureItem>>(fullPath);
+            catalog = jsonSerializer.DeserializeFromFile<List<FurnitureItem>>(fullPath);
         }
     }
     public partial class FurnitureCatalog // Задание 1
     {
         public void PrioritySort()
         {
-            for (int i = 0; i < Catalog.Count; i++)
+            for (int i = 0; i < catalog.Count; i++)
             {
-                for (int j = i + 1; j < Catalog.Count; j++)
+                for (int j = i + 1; j < catalog.Count; j++)
                 {
-                    int flag_brand = String.Compare(Catalog[i].brand, Catalog[j].brand);
-                    int flag_model = String.Compare(Catalog[i].model, Catalog[j].model);
+                    int flag_brand = String.Compare(catalog[i].brand, catalog[j].brand);
+                    int flag_model = String.Compare(catalog[i].model, catalog[j].model);
                     if ((flag_brand == -1) || (flag_brand == 0) && (flag_model == -1))
                     {
-                        FurnitureItem tmp = Catalog[i];
-                        Catalog[i] = Catalog[j];
-                        Catalog[j] = tmp;
+                        FurnitureItem tmp = catalog[i];
+                        catalog[i] = catalog[j];
+                        catalog[j] = tmp;
                     }
                 }
             }
