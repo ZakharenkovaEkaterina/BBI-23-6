@@ -1,4 +1,4 @@
-﻿using ConsoleApplication1;
+using ConsoleApplication1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,18 +39,18 @@ namespace _10lab
                 string brand = node.ChildNodes.Item(2).InnerText;
                 string price_str = node.ChildNodes.Item(3).InnerText;
                 double price = Convert.ToDouble(price_str);
-                if ((typeName == "Chair") || (typeName == "Armchair") || (typeName == "Stool"))
+                if ((typeName.Contains("Chair")) || (typeName.Contains("Armchair")) || (typeName.Contains("Stool")))
                 {
                     string hasBack = node.ChildNodes.Item(4).InnerText;
                     string hasWheels = node.ChildNodes.Item(5).InnerText;
                     bool hb = (hasBack == "True");
                     bool hw = (hasWheels == "True");
-                    if (typeName == "Armchair")
+                    if (typeName.Contains("Armchair"))
                     {
                         string coating = node.ChildNodes.Item(6).InnerText;
                         instance = new Armchair(model, brand, price, hb, hw, coating);
                     }
-                    else if (typeName == "Stool")
+                    else if (typeName.Contains("Stool"))
                     {
                         instance = new Stool(model, brand, price);
                     }
@@ -59,7 +59,7 @@ namespace _10lab
                         instance = new Chair(model, brand, hb, hw);
                     }
                 }
-                else if (typeName == "Table")
+                else if (typeName.Contains("Table"))
                 {
                     string numOfPlaces_str = node.ChildNodes.Item(4).InnerText;
                     string foldable_str = node.ChildNodes.Item(5).InnerText;
@@ -67,7 +67,7 @@ namespace _10lab
                     bool foldable = (foldable_str == "True");
                     instance = new Table(model, brand, num, foldable);
                 }
-                else if (typeName == "Sofa")
+                else if (typeName.Contains("Sofa"))
                 {
                     string angular_str = node.ChildNodes.Item(4).InnerText;
                     string foldable_str = node.ChildNodes.Item(5).InnerText;
@@ -75,7 +75,7 @@ namespace _10lab
                     bool foldable = (foldable_str == "True");
                     instance = new Sofa(model, brand, angular, foldable);
                 }
-                else if (typeName == "Bed")
+                else if (typeName.Contains("Bed"))
                 {
                     string size_str = node.ChildNodes.Item(4).InnerText;
                     string bunkbed_str = node.ChildNodes.Item(5).InnerText;
